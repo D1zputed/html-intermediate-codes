@@ -60,7 +60,7 @@
 <body>
     <div class="container">
         <h1>Sign Up</h1>
-        <form action="#" method="post">
+        <form action="#" method="post" id="form1">
             <div class="form-group">
                 <label for="firstname">First Name:</label>
                 <input type="text" id="firstname" name="firstname" required>
@@ -80,11 +80,26 @@
             <div class="form-group">
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
-                <small>Password must contain at least 8 characters, including one uppercase letter, one lowercase 
-                letter, one number, and one special character (!@#$%^&*).</small>
+                <small>
+                    Password must contain at least 8 characters, including one uppercase letter, one lowercase
+                    letter, one number, and one special character (!@#$%^&*).
+                </small>
             </div>
             <button type="submit">Sign Up</button>
         </form>
+
+        <script>
+            document.getElementById("form1").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the formfrom actually submitting
+            // Access and display form data
+            var form = event.target;
+            var formData = new FormData(form);
+            // Iterate through form data and log it (fordebugging)
+            for (var pair of formData.entries()) {
+                console.log(pair[0] + ": " + pair[1]);
+            }
+        });
+        </script>
     </div>
 </body>
 </html>
